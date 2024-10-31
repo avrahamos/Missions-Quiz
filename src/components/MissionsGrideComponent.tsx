@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Mission from "../models/missionModel";
+import missionStatus from "./utils/missionStatus";
 
 const URL = "https://reactexambackend.onrender.com/missions";
 const KEY = "8176800";
@@ -28,6 +29,22 @@ const MissionsGridComponent = () => {
       console.error("Error deleting mission:", error);
     }
   };
+  const handleProgress = async (id: string) => {
+    try {
+      const updatedMission = await fetch(`${URL}/${KEY}/progress/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: missionStatus.Progress }),
+      });
+      const data = await updatedMission.json();
+      setMissions(
+        missions.map((mission) => (mission.id === id ? data : mission))
+      );
+    } catch (error) {
+      console.error("Error updating the mission:", error);
+    }
+  };
+
 
   return;
   <div>MissionsGridComponent</div>;
