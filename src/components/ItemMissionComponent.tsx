@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import missionStatus from "./utils/missionStatus";
 import Mission from "../models/missionModel";
 
@@ -15,13 +15,25 @@ const ItemMissionComponent: React.FC<Props> = ({
   onProgress,
   onEnd,
 }) => {
+  const [status, setStatus] = useState(
+    mission.status.trim() 
+  );
+
+  const handleButtonClick = () => {
+    if (status === missionStatus.Pending.trim()) {
+      onProgress(mission._id!);
+      setStatus(missionStatus.Progress.trim());
+    } else if (status === missionStatus.Progress.trim()) {
+      onEnd(mission._id!);
+      setStatus(missionStatus.Completed.trim());
+    }
+  };
+
   return (
-    <div
-      className={`mission-item mission-${mission.status.toLocaleLowerCase()}`}
-    >
-      <h3>{mission.name}</h3>
+    <div className={`mission-item mission-${status}`}>
+      <h3>Name: {mission.name}</h3>
       <p>Priority: {mission.priority}</p>
-      <p>{mission.description}</p>
+      <p>Description: {mission.description}</p>
       <div>
         <button
           className="delete-button"
@@ -29,17 +41,14 @@ const ItemMissionComponent: React.FC<Props> = ({
         >
           DELETE
         </button>
-        {mission.status === missionStatus.Pending && (
+        {status !== missionStatus.Completed.trim() && (
           <button
-            className="progress-button"
-            onClick={() => onProgress(mission._id!)}
+            className={`mission-button ${
+              status === missionStatus.Pending.trim() ? "pending" : "completed"
+            }`}
+            onClick={handleButtonClick}
           >
-            in progress
-          </button>
-        )}
-        {mission.status === missionStatus.Progress && (
-          <button className="end-button" onClick={() => onEnd(mission._id!)}>
-            complete
+            {status === missionStatus.Pending.trim() ? "Progress" : "Complete"}
           </button>
         )}
       </div>

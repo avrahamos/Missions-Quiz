@@ -1,7 +1,7 @@
- enum missionStatus {
-   Pending = " pending ",
-   Progress = "progress",
-   Completed = "completed",
- }
+enum missionStatus {
+  Pending = "Pending ",
+  Progress = "Progress",
+  Completed = "Completed",
+}
 
- export default missionStatus
+export default missionStatus;
