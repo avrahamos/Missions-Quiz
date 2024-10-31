@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Mission from "../models/missionModel";
 import missionStatus from "./utils/missionStatus";
+import ItemMissionComponent from "./ItemMissionComponent";
 
 const URL = "https://reactexambackend.onrender.com/missions";
 const KEY = "8176800";
@@ -63,8 +64,19 @@ const MissionsGridComponent = () => {
 
 
 
-  return;
-  <div>MissionsGridComponent</div>;
+ return (
+   <div>
+     {missions.map((mission) => (
+       <ItemMissionComponent
+         key={mission.id}
+         mission={mission}
+         onDelete={handleDelete}
+         onProgress={handleProgress}
+         onEnd={handleEnd}
+       />
+     ))}
+   </div>
+ );
 };
 
 export default MissionsGridComponent;
