@@ -1,25 +1,113 @@
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
+  color: #333;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.preact:hover {
-  filter: drop-shadow(0 0 2em #673ab8aa);
+.add-mission {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
 }
 
-.card {
-  padding: 2em;
+.add-mission h3 {
+  margin-top: 0;
 }
 
-.read-the-docs {
-  color: #888;
+.add-mission input,
+.add-mission select,
+.add-mission textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.add-mission button {
+  color: white;
+  background-color: green;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-mission button:hover {
+  background-color: #45a049;
+}
+
+.mission-item {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.mission-item h3 {
+  margin: 0;
+}
+
+.mission-item p {
+  margin: 5px 0;
+}
+
+.mission-pending {
+  background-color: red;
+}
+
+.mission-progress {
+  background-color: orange;
+}
+
+.mission-completed {
+  background-color: green;
+}
+
+.mission-item button {
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.mission-item .delete-button {
+  background-color: rgb(44, 33, 33);
+}
+
+.mission-item .delete-button:hover {
+  background-color: darkred;
+}
+
+.mission-item .progress-button {
+  background-color: green;
+}
+
+.mission-item .progress-button:hover {
+  background-color: darkgreen;
+}
+
+.mission-item .end-button {
+  background-color: blue;
+}
+
+.mission-item .end-button:hover {
+  background-color: darkblue;
 }

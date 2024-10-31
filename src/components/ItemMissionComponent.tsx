@@ -15,60 +15,31 @@ const ItemMissionComponent: React.FC<Props> = ({
   onProgress,
   onEnd,
 }) => {
-  const getStatusColor = () => {
-    switch (mission.status) {
-      case missionStatus.Pending:
-        return "red";
-      case missionStatus.Progress:
-        return "orange";
-      case missionStatus.Completed:
-        return "green";
-      default:
-        return "gray";
-    }
-  };
-
   return (
     <div
-      style={{
-        backgroundColor: getStatusColor(),
-        padding: "10px",
-        margin: "5px",
-        borderRadius: "5px",
-      }}
+      className={`mission-item mission-${mission.status.toLocaleLowerCase()}`}
     >
       <h3>{mission.name}</h3>
       <p>Priority: {mission.priority}</p>
       <p>{mission.description}</p>
       <div>
         <button
-          onClick={() => onDelete(mission.id)}
-          style={{ color: "white", backgroundColor: "red" }}
+          className="delete-button"
+          onClick={() => onDelete(mission._id!)}
         >
-            delete
+          DELETE
         </button>
         {mission.status === missionStatus.Pending && (
           <button
-            onClick={() => onProgress(mission.id)}
-            style={{
-              color: "white",
-              backgroundColor: "green",
-              marginLeft: "5px",
-            }}
+            className="progress-button"
+            onClick={() => onProgress(mission._id!)}
           >
-            Progress
+            in progress
           </button>
         )}
         {mission.status === missionStatus.Progress && (
-          <button
-            onClick={() => onEnd(mission.id)}
-            style={{
-              color: "white",
-              backgroundColor: "blue",
-              marginLeft: "5px",
-            }}
-          >
-            Completed
+          <button className="end-button" onClick={() => onEnd(mission._id!)}>
+            complete
           </button>
         )}
       </div>

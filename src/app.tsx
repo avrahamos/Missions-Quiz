@@ -1,11 +1,14 @@
-import { useState } from 'preact/hooks'
-import './app.css'
+import React from "react";
+import MissionsGridComponent from "./components/MissionsGrideComponent";
+import "./App.css";
 
-export function App() {
-  
+const App: React.FC = () => {
   return (
-    <>
-      
-    </>
-  )
-}
+    <div>
+      <h1>Management of military missions</h1>
+      <MissionsGridComponent />
+    </div>
+  );
+};
+
+export default App;
