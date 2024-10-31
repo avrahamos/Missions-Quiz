@@ -45,6 +45,23 @@ const MissionsGridComponent = () => {
     }
   };
 
+  const handleEnd = async (id: string) => {
+    try {
+      const updatedMission = await fetch(`${URL}/${KEY}/progress/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: missionStatus.Completed }),
+      });
+      const data = await updatedMission.json();
+      setMissions(
+        missions.map((mission) => (mission.id === id ? data : mission))
+      );
+    } catch (error) {
+      console.error("Error at the end of the task:", error);
+    }
+  };
+
+
 
   return;
   <div>MissionsGridComponent</div>;
